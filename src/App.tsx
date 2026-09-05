@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import "./App.css";
 import type { ProductType } from "./types";
 import Products from "./components/products/Products";
@@ -11,11 +11,8 @@ const productsPromise = async (): Promise<ProductType[]> => {
 };
 
 function App() {
-
-
   return (
     <>
-
       <Suspense fallback={<h2>Loading...</h2>}>
         <Products productsPromise={productsPromise()}></Products>
       </Suspense>
