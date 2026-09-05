@@ -4,13 +4,15 @@ import "./product.css";
 
 export interface ProductProps {
   product: ProductType;
+  handleCartCount: (product: ProductType) => void;
 }
 
-export default function Product({ product }: ProductProps) {
+export default function Product({ product, handleCartCount }: ProductProps) {
   const [addToCart, setAddToCart] = useState(false);
 
   const handleAddToCart = (): void => {
     setAddToCart(!addToCart);
+    handleCartCount(product);
   };
 
   return (
@@ -32,7 +34,10 @@ export default function Product({ product }: ProductProps) {
           {/* price & rating footer */}
           <div className="product-footer">
             <span className="product-price">${product.price.toFixed(2)}</span>
-            <button onClick={handleAddToCart} >
+            <button
+              onClick={handleAddToCart}
+              className="border border-[#9ca3af] rounded px-6 py-2"
+            >
               {addToCart ? "Added" : "Add to cart"}
             </button>
           </div>
